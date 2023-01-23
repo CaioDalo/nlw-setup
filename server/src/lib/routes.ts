@@ -37,7 +37,6 @@ export async function appRoutes(app: FastifyInstance) {
         const getDayParams = z.object({
             date: z.coerce.date()
         })
-
         
         const { date } = getDayParams.parse(request.query)
         
@@ -86,8 +85,6 @@ export async function appRoutes(app: FastifyInstance) {
         const { id } = toggleHabitParams.parse(request.params)
 
         const today = dayjs().startOf('day').toDate()
-
-        console.log(today)
 
         let day = await prisma.day.findFirst({
             where: {

@@ -20,11 +20,11 @@ type Summary = Array<{
 
 export function SummaryTable() {
 
-    const [summary, setSummay] = useState<Summary>([])
+    const [summary, setSummary] = useState<Summary>([])
 
     useEffect(() => {
         api.get('/summary').then(response => {
-            setSummay(response.data)
+            setSummary(response.data)
         })
     }, [])
 
@@ -45,7 +45,7 @@ export function SummaryTable() {
             </div>
 
             <div className="grid grid-rows-7 grid-flow-col gap-3">
-                { summary &&
+                { summary.length &&
                     summaryDates.map(date => {
                         const dayInSummary = summary.find(day => {
                             return dayjs(date).isSame(day.date, 'day')

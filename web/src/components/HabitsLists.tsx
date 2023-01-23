@@ -25,7 +25,7 @@ export function HabitsLists({ date, onCompletedChanged }: HabitsListsProps) {
         api.get('day', {
             params: {
                 date: date.toISOString(),
-            } 
+            }
         }).then(response => {
             setHabitsInfo(response.data)
         })

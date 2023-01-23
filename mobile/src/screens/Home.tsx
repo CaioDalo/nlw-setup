@@ -1,6 +1,6 @@
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import dayjs from "dayjs";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { View, Text, ScrollView, Alert } from "react-native";
 import { HabitDay, daySize } from "../components/HabitDay";
 import { Header } from "../components/Header";
@@ -31,7 +31,6 @@ export function Home() {
         try {
             setLoading(true)
             const response = await api.get('summary')
-            console.log(response)
             setSummary(response.data)
         } catch (error) {
             Alert.alert('Ops', 'Não foi possivel carregar o sumário de hábitos')
@@ -41,9 +40,9 @@ export function Home() {
         }
     }
 
-    useEffect(() => {
+    useFocusEffect(useCallback(() => {
         fetchData()
-    }, [])
+    }, []))
 
     if(loading) {
         return  (
